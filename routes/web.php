@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Category;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,3 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'App\Http\Controllers\HomeController@home');
+
+Route::get('lk1n', function(){
+    $post = Category::find(1)->post->toArray();
+
+    echo "<pre>";
+    print_r($post);
+});
