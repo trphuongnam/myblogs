@@ -44,6 +44,8 @@
           </table>
         </div>
         <!-- /.card-body -->
+        {{$arr_category->links()}}
+
       </div>
       <!-- /.card -->
     <!-- /.col -->
