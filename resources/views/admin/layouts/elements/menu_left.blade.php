@@ -50,7 +50,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{url('/admin/category')}}" class="nav-link">
+            <a href="{{url('/admin/cat')}}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Danh Sách Chủ Đề</p>
             </a>
@@ -102,7 +102,7 @@
         {{--Begin: Menu quản lý user --}}
       <li class="nav-item">
         <a href="#" class="nav-link">
-          <i class="nav-icon far fa-image"></i>
+          <i class="nav-icon far fa-user"></i>
           <p>
             Quản lý User
             <i class="fas fa-angle-left right"></i>
@@ -110,13 +110,13 @@
         </a>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="pages/layout/top-nav.html" class="nav-link">
+            <a href="{{url('/admin/user')}}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Danh Sách User</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+            <a href="{{url('/admin/user-authorize')}}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Phân Quyền User</p>
             </a>
@@ -128,7 +128,7 @@
         <li class="nav-header">THÔNG TIN WEBSITE</li>
         {{--Begin: Menu quản lý giới thiệu --}}
         <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
+            <a href="{{url('/admin/about')}}" class="nav-link">
               <i class="nav-icon far fa-circle text-danger"></i>
               <p>
                 Giới Thiệu
@@ -139,7 +139,7 @@
 
         {{--Begin: Menu quản lý web info --}}
         <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
+            <a href="{{url('/admin/web-info')}}" class="nav-link">
               <i class="nav-icon far fa-circle text-danger"></i>
               <p>
                 Website Info

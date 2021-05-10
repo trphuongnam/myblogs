@@ -8,7 +8,7 @@
 
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
-          <img class="animation__wobble" src="{{'images/logos/AdminLTELogo.png'}}" alt="AdminLTELogo" height="60" width="60">
+          <img class="animation__wobble" src="{{asset('images/logos/AdminLTELogo.png')}}" alt="AdminLTELogo" height="60" width="60">
         </div>
 
         {{-- Begin: Phần menu --}}
@@ -20,7 +20,7 @@
         
         <!-- Brand Logo -->
         <a href="index3.html" class="brand-link">
-          <img src="{{'images/logos/AdminLTELogo.png'}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+          <img src="{{asset('images/logos/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
           <span class="brand-text font-weight-light">Admin Nam Tran</span>
         </a>
 
