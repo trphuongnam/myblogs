@@ -46,18 +46,11 @@ Route::prefix('admin')->group(function () {
 
     /* Begin: Route của phần chủ đề bài viết */
     Route::get('/cat', 'App\Http\Controllers\Admin\CatController@index');
-    Route::get('/cat/add', function () {
-        return view("admin/pages/category_add");
-    });
-    Route::get('/cat/save', function () {
-        return view("admin/pages/category_add");
-    });
-    Route::get('/cat/edit/{cat_key}', function () {
-        return view("admin/pages/category_edit");
-    });
-    Route::get('/cat/del/{cat_key}', function () {
-        return view("admin/pages/category_edit");
-    });
+    Route::get('/cat/add', 'App\Http\Controllers\Admin\CatController@add');
+    Route::post('/cat/save', 'App\Http\Controllers\Admin\CatController@save');
+    Route::get('/cat/edit/{cat_key}', 'App\Http\Controllers\Admin\CatController@edit');
+    Route::post('/cat/update', 'App\Http\Controllers\Admin\CatController@update');
+    Route::get('/cat/del/{cat_key}', 'App\Http\Controllers\Admin\CatController@del');
     /* End: Route của phần chủ đề bài viết */
 
     /* End: Route của phần bình luận bài viết */

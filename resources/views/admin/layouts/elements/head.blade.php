@@ -10,3 +10,5 @@
   <link rel="stylesheet" href="{{asset('css/admin/OverlayScrollbars.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('css/admin/adminlte.min.css')}}">
+
+  <link rel="stylesheet" href="{{asset('css/button.css')}}">
