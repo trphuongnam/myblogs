@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Category;
-
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +22,22 @@ Route::get('lk1n', function(){
 
     echo "<pre>";
     print_r($post);
+});
+
+Route::prefix('admin')->group(function () {
+    Route::get('/', function () {
+        return view("admin/pages/dashboard");
+    });
+
+    Route::get('/post', function () {
+        return view("admin/pages/post");
+    });
+
+    Route::get('/category', function () {
+        return view("admin/pages/category");
+    });
+
+    Route::get('/post-comment', function () {
+        return view("admin/pages/post_comment");
+    });
 });
