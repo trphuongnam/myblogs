@@ -139,7 +139,7 @@
 
         {{--Begin: Menu quản lý web info --}}
         <li class="nav-item">
-            <a href="{{url('/admin/web-info')}}" class="nav-link">
+            <a href="{{url('/admin/webinfo')}}" class="nav-link">
               <i class="nav-icon far fa-circle text-danger"></i>
               <p>
                 Website Info

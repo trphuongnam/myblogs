@@ -17,13 +17,6 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', 'App\Http\Controllers\HomeController@home');
 
-Route::get('lk1n', function(){
-    $post = Category::find(1)->post->toArray();
-
-    echo "<pre>";
-    print_r($post);
-});
-
 Route::prefix('admin')->group(function () {
     Route::get('/', function () {
         return view("admin/pages/dashboard");
@@ -88,4 +81,13 @@ Route::prefix('admin')->group(function () {
         return view("admin/pages/user_edit");
     });
     /* End: Route của phần quản lý user*/
+
+    /* Begin: Route của phần quản lý website info */
+    Route::get('/webinfo', 'App\Http\Controllers\Admin\WebinfoController@index');
+    Route::get('/webinfo/add', 'App\Http\Controllers\Admin\WebinfoController@add');
+    Route::post('/webinfo/save', 'App\Http\Controllers\Admin\WebinfoController@save');
+    Route::get('/webinfo/edit/{cat_key}', 'App\Http\Controllers\Admin\WebinfoController@edit');
+    Route::post('/webinfo/update', 'App\Http\Controllers\Admin\WebinfoController@update');
+    Route::get('/webinfo/del/{cat_key}', 'App\Http\Controllers\Admin\WebinfoController@del');
+    /* End: Route của phần quản lý website info */
 });
