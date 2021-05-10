@@ -14,7 +14,7 @@ class CatController extends Controller
 {
     function index()
     {
-        $arr_category = Category::orderBy('id')->paginate(5);
+        $arr_category = Category::orderBy('id', 'DESC')->paginate(5);
         return view("admin/pages/category", ['arr_category'=>$arr_category]);
     }
 
@@ -105,8 +105,12 @@ class CatController extends Controller
         }
     }
 
-    function del(Request $request)
+    function del($cat_key)
     {
-
+        $arr_url_cat = explode("-", $cat_key);
+        $uid_cat = $arr_url_cat[count($arr_url_cat)-1];
+        
+        $category_delete = Category::where("uid", $uid_cat)->delete();
+        return redirect('/admin/cat');
     }
 }

@@ -22,6 +22,7 @@
                   <th>Stt</th>
                   <th>Tên chủ đề</th>
                   <th>Mô tả</th>
+                  <th>Ngày tạo</th>
                   <th>Hành động</th>
                 </tr>
             </thead>
@@ -32,11 +33,19 @@
                     <td>{{$loop->iteration}}</td>
                     <td>{{$category->name}}</td>
                     <td>{{$category->description}}</td>
+                    <td>{{date('d-m-Y', strtotime($category->created_at))}}</td>
                     <td>
                         <a href="#" class="btn btn-app" title="Chi tiết"><i class="fas fa-eye"></i>Chi tiết</a>
                         <a href="{{url('/admin/cat/edit/')}}/{{$category->url_key}}-{{$category->uid}}" class="btn btn-app" title="Sửa"><i class="fas fa-edit"></i>Sửa</a>
-                        <a href="{{url('/admin/cat/del/url_key')}}" class="btn btn-app" title="Xóa"><i class="fas fa-trash-alt"></i>Xóa</a>
+                        <a href="{{url('/admin/cat/del/')}}/{{$category->url_key}}-{{$category->uid}}" class="btn btn-app" title="Xóa" onClick="return confirm('Bạn có chắc chắn muốn xóa chủ đề này không?');">
+                          <i class="fas fa-trash-alt"></i>Xóa
+                        </a>
+                        
+                        @if ($category->status == 1)
                         <a href="#" class="btn btn-app" title="Ẩn"><i class="fas fa-ban"></i>Ẩn</a>
+                        @else
+                        <a href="#" class="btn btn-app" title="Bỏ ẩn"><i class="fas fa-ban"></i>Bỏ ẩn</a>
+                        @endif
                     </td>
                 </tr>
                 @endforeach
@@ -50,4 +59,8 @@
       <!-- /.card -->
     <!-- /.col -->
   </div>
+  <script>
+    
+  </script>
 @endsection
+
