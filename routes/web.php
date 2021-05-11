@@ -86,8 +86,16 @@ Route::prefix('admin')->group(function () {
     Route::get('/webinfo', 'App\Http\Controllers\Admin\WebinfoController@index');
     Route::get('/webinfo/add', 'App\Http\Controllers\Admin\WebinfoController@add');
     Route::post('/webinfo/save', 'App\Http\Controllers\Admin\WebinfoController@save');
-    Route::get('/webinfo/edit/{cat_key}', 'App\Http\Controllers\Admin\WebinfoController@edit');
+    Route::get('/webinfo/edit/{key}', 'App\Http\Controllers\Admin\WebinfoController@edit');
     Route::post('/webinfo/update', 'App\Http\Controllers\Admin\WebinfoController@update');
-    Route::get('/webinfo/del/{cat_key}', 'App\Http\Controllers\Admin\WebinfoController@del');
+    Route::get('/webinfo/del/{key}', 'App\Http\Controllers\Admin\WebinfoController@del');
     /* End: Route của phần quản lý website info */
+});
+
+/* Route login, register */
+Route::get('/login', function(){
+    return view("login/pages/login");
+});
+Route::get('/regist', function(){
+    return view("login/pages/register");
 });

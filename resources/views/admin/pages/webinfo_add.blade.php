@@ -33,11 +33,7 @@
             <label for="exampleInputFile">Ảnh đại diện website:</label>
             <div class="input-group">
               <div class="custom-file">
-                <input type="file" class="custom-file-input" value="" id="avatar" name="avatar">
-                <label class="custom-file-label" for="exampleInputFile"></label>
-              </div>
-              <div class="input-group-append">
-                <span class="input-group-text">Upload</span>
+                <input type="file" value="" id="avatar" name="avatar">
               </div>
             </div>
         </div>
@@ -45,11 +41,7 @@
             <label for="exampleInputFile">Ảnh bìa website:</label>
             <div class="input-group">
               <div class="custom-file">
-                <input type="file" class="custom-file-input" value="" id="cover_image" name="cover_image">
-                <label class="custom-file-label" for="exampleInputFile"></label>
-              </div>
-              <div class="input-group-append">
-                <span class="input-group-text">Upload</span>
+                <input type="file" value="" id="cover_image" name="cover_image">
               </div>
             </div>
         </div>
