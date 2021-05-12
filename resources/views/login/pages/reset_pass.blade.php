@@ -40,7 +40,7 @@
           </div>
         </form>
         <p class="mb-1">
-          <a href="{{url('/admin/pass-reset')}}">Quay về đăng nhập</a>
+          <a href="{{url('/admin/login')}}">Quay về đăng nhập</a>
         </p>
       </div>
       <!-- /.card-body -->

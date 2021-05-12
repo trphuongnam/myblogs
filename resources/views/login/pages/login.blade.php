@@ -9,6 +9,7 @@
       </div>
       <div class="card-body">
         
+        {{--Begin: Hiển thị thông báo lỗi --}}
         @if (session()->get('login_unaccepted'))
         <div class="alert alert-warning alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -17,7 +18,17 @@
           </p>
         </div>
         @endif
-        
+
+        @if (session()->has('sending_success'))
+        <div class="alert alert-info alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          <p><i class="icon fas fa-info"></i>
+          {{session()->get('sending_success')}}
+          </p>
+        </div>
+        @endif
+        {{--End: Hiển thị thông báo lỗi --}}
+
         <form action="{{url('admin/login/checklogin')}}" method="post">
             @csrf
           <div class="input-group mb-3">

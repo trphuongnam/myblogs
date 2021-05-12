@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Http\Controllers\MailResetPasswordController;
 
 class LoginController extends Controller
 {
@@ -45,6 +46,8 @@ class LoginController extends Controller
 
     function checkReset(Request $request)
     {
+        $send_mail = new MailResetPasswordController();
+
         $email = $request->email;
         $arr_rule = [
             "email"=>"required|email"
@@ -61,12 +64,12 @@ class LoginController extends Controller
         else{
 
             /* Kiểm tra email có tồn tại trong hệ thống không */
-            $data = User::where('email', $email)->get();
-            if($data)
+            $user_infos = User::where('email', $email)->get()->toArray();
+            if($user_infos)
             {
-                return $data;
+                return $send_mail->send($email, $user_infos);
             }
-
+            else return redirect()->route('reset_pass')->withInput();
         }
     }
 }
