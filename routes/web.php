@@ -88,12 +88,15 @@ Route::prefix('admin')->group(function () {
 
 
 /* Begin: Route login admin */
-Route::get('/login', 'App\Http\Controllers\LoginController@index')->name("login");
-Route::post('/login/checklogin', 'App\Http\Controllers\LoginController@login');
-Route::get('/logout', 'App\Http\Controllers\LoginController@logout');
-
+Route::get('/admin/login', 'App\Http\Controllers\Admin\LoginController@index')->name("login");
+Route::post('/admin/login/checklogin', 'App\Http\Controllers\Admin\LoginController@login');
+Route::get('/admin/logout', 'App\Http\Controllers\Admin\LoginController@logout');
+Route::get('/admin/pass-reset', 'App\Http\Controllers\Admin\LoginController@reset')->name('reset_pass');
+Route::post('/admin/pass-reset/checkreset', 'App\Http\Controllers\Admin\LoginController@checkReset');
 /* End: Route login admin */
 
+/* Begin: Route regist user */
 Route::get('/regist', function(){
     return view("login/pages/register");
 });
+/* End: Route regist user */
