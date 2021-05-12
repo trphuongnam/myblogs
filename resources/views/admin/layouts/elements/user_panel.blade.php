@@ -4,5 +4,6 @@
     </div>
     <div class="info">
       <a href="#" class="d-block">Trần Phương Nam</a>
+      <a href="{{url('/logout')}}" class="btn"><i class="fas fa-sign-out-alt">Đăng xuất</i></a>
     </div>
   </div>

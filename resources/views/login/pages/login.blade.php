@@ -8,20 +8,28 @@
         <h1><b>Admin</b> NamTP</h1>
       </div>
       <div class="card-body">
-        <p class="login-box-msg">Sign in to start your session</p>
-  
-        <form action="" method="post">
+        
+        @if (session()->get('login_unaccepted'))
+        <div class="alert alert-warning alert-dismissible">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          <p><i class="icon fas fa-exclamation-triangle"></i>
+          {{session()->get('login_unaccepted')}}
+          </p>
+        </div>
+        @endif
+        
+        <form action="{{url('/login/checklogin')}}" method="post">
             @csrf
           <div class="input-group mb-3">
-            <input type="email" class="form-control" placeholder="Email">
+            <input type="text" class="form-control" placeholder="Username" name="username" value="{{old('username')}}">
             <div class="input-group-append">
               <div class="input-group-text">
-                <span class="fas fa-envelope"></span>
+                <span class="fas fa-user"></span>
               </div>
             </div>
           </div>
           <div class="input-group mb-3">
-            <input type="password" class="form-control" placeholder="Password">
+            <input type="password" class="form-control" placeholder="Password" name="password">
             <div class="input-group-append">
               <div class="input-group-text">
                 <span class="fas fa-lock"></span>
@@ -31,7 +39,7 @@
           <div class="row">
             <div class="col-8">
               <div class="icheck-primary">
-                <input type="checkbox" id="remember">
+                <input type="checkbox" id="remember" name="remember">
                 <label for="remember">
                   Remember Me
                 </label>
