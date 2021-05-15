@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Category;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Kernel;
+use App\Http\Controllers\Admin\UserController;
 
 /* Begin: Route Phần Publics */
 Route::get('/', 'App\Http\Controllers\HomeController@home');
@@ -83,6 +84,11 @@ Route::prefix('admin')->group(function () {
     Route::post('/webinfo/update', 'App\Http\Controllers\Admin\WebinfoController@update')->middleware("checkLogin");
     Route::get('/webinfo/del/{key}', 'App\Http\Controllers\Admin\WebinfoController@del')->middleware("checkLogin");
     /* End: Route của phần quản lý website info */
+
+    /* Begin: Route phần profile user */
+    Route::get('/profile/{url_key}', [UserController::class, 'profile'])->name('profile')->middleware("checkLogin");
+    Route::post('/profile/update', [UserController::class, 'update'])->name('update')->middleware("checkLogin");
+    /* End:  Route phần profile user*/
 });
 /* End: Route phần Admin */
 

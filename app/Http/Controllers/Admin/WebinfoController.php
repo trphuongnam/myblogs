@@ -112,7 +112,7 @@ class WebinfoController extends Controller
             $avatar_name = "";
             $cover_image_name = "";
             
-            if(request()->hasfile('avatar') && request()->hasfile('cover_image'))
+            if(request()->hasfile('avatar') || request()->hasfile('cover_image'))
             {
                 $uploaded_avatar = $request->file('avatar');
                 $uploaded_cover_image = $request->file('cover_image');

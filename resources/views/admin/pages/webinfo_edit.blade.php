@@ -32,10 +32,14 @@
         <div class="form-group">
             <label for="exampleInputFile">Ảnh đại diện website:</label>
             <div class="input-group">
-              <div class="custom-file">
-                @if ($webinfo[0]['avatar'] !== "")
-                    <img src="{{asset('/uploads/images')}}{{$webinfo[0]['avatar']}}">
-                @endif
+
+              @if ($webinfo[0]['avatar'] !== "")
+                <img class="img_form" src="{{asset('/uploads/images')}}/{{$webinfo[0]['avatar']}}">
+              @endif
+              {{-- End: @if ($webinfo[0]['avatar'] !== "") --}}
+
+              <div class="custom-file box-img">
+                
                 <input type="file" value="{{$webinfo[0]['avatar']}}" id="avatar" name="avatar">
               </div>
             </div>
@@ -43,10 +47,13 @@
         <div class="form-group">
             <label for="exampleInputFile">Ảnh bìa website:</label>
             <div class="input-group">
-              <div class="custom-file">
-                @if ($webinfo[0]['cover_image'] !== "")
-                    <img src="{{asset('/uploads/images')}}{{$webinfo[0]['cover_image']}}">
-                @endif
+                
+              @if ($webinfo[0]['cover_image'] !== "")
+                <img class="img_form" src="{{asset('/uploads/images')}}/{{$webinfo[0]['cover_image']}}">
+              @endif
+              {{-- End: @if ($webinfo[0]['cover_image'] !== "") --}}
+
+              <div class="custom-file box-img">
                 <input type="file" value="{{$webinfo[0]['cover_image']}}" id="cover_image" name="cover_image">
               </div>
             </div>

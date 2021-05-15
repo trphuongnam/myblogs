@@ -1,14 +1,17 @@
+<?php
+    $data_website = \App\Models\WebsiteInfo::find(1)->get()->toArray();
+?>
 <div class="row">
     <div class="col-12 grid-margin">
         <div class="profile-header">
             <div class="cover">
                 <div class="gray-shade"></div>
                 <figure>
-                    <img src="https://scontent.fsgn2-6.fna.fbcdn.net/v/t1.6435-9/103612820_2810774279150025_4493956434379368455_n.jpg?_nc_cat=109&ccb=1-3&_nc_sid=e3f864&_nc_ohc=64EFet949EkAX9RYT-N&_nc_ht=scontent.fsgn2-6.fna&oh=6d25b934f03ace15516a21c54603aed1&oe=60BB80EB" class="img-fluid cover_image" alt="profile cover">
+                    <img src="{{asset('/uploads/images')}}/{{$data_website[0]['cover_image']}}" class="img-fluid cover_image" alt="profile cover">
                 </figure>
                 <div class="cover-body d-flex justify-content-between align-items-center">
                     <div>
-                        <img class="profile-pic" src="https://scontent.fsgn2-5.fna.fbcdn.net/v/t1.6435-9/110007479_2847261028834683_7374212855848057932_n.jpg?_nc_cat=103&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=TeZ1DP3UoEIAX9hotAz&_nc_ht=scontent.fsgn2-5.fna&oh=32a477232ddec0c04967d7997427a9fa&oe=60BCA37A" alt="profile">
+                        <img class="profile-pic" src="{{asset('/uploads/images')}}/{{$data_website[0]['avatar']}}" alt="profile">
                         <span class="profile-name">Trần Phương Nam - Web Developer</span>
                     </div>
                 </div>
