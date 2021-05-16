@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\File;
 
 class UserController extends Controller
 {
@@ -21,24 +22,34 @@ class UserController extends Controller
 
     function update(Request $request)
     {
-        // $id = $request->id;
-        // $fullname = $request->fullname;
-        // $username = $request->username;
-        // $password = $request->password;
-        // $description = $request->description;
-        // $phone = $request->phone;
+        $id = $request->id;
+        $fullname = $request->fullname;
+        $username = $request->username;
+        $password = $request->password;
+        $description = $request->description;
+        $phone = $request->phone;
 
-        // $uid = DB::table('users')->where('id', $id)->pluck('uid');
+        $image = $request->file('avatar');
+        $avata_name = "namtp_user_".rand().'.'.$image->getClientOriginalExtension();
+        $image->move(public_path('/uploads/images'), $avata_name);
 
-        // $user = User::find($id);
-        // $user->username = $username;
-        // $user->password = bcrypt($password);
-        // $user->phone = $phone;
-        // $user->description = $description;
-        // $update_info = $user->save();
+        $uid = DB::table('users')->where('id', $id)->pluck('uid');
+
+        $user = User::find($id);
+        $user->username = $username;
+        $user->password = bcrypt($password);
+        $user->phone = $phone;
+        $user->description = $description;
+        $user->avatar = $avata_name;
+        $update_info = $user->save();
         
-        // if($update_info === true)  return url('/admin/profile/').'/'.Str::slug($fullname).'-'.$uid[0];
-        // else return "Loi";
-        return $request;
+        if($update_info === true)  return url('/admin/profile/').'/'.Str::slug($fullname).'-'.$uid[0];
+        else return "Loi";
+    }
+
+    function update_avatar(Request $req)
+    {
+        
+        
     }
 }

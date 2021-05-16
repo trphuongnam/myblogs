@@ -28,6 +28,7 @@
 </div>
 
 <script>
+  
   /* Begin: Hàm ajax cập nhật thông tin người dùng ở phần admin */
   function update_data()
   {
@@ -46,12 +47,9 @@
       data: new FormData(document.getElementById('update_user')),
       contentType: false,
       processData: false,
-      dataType: "json",
+      dataType: "text",
       success: function(data){
-        console.log(data);
-        console.log("formdata");
-        console.log(FormData);
-        //window.location.href = data;
+        window.location.href = data;
       },
       error: function(error){
           console.log(error);
@@ -59,6 +57,6 @@
     });
   }
   /* End: Hàm ajax cập nhật thông tin người dùng ở phần admin */
-
+  
   </script>
 @endsection

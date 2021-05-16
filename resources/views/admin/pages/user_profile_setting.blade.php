@@ -1,6 +1,14 @@
 <div class="tab-pane" id="settings">
+  {{-- Begin: Form cập nhật thông tin --}}
   <form action="{{url('/admin/profile/update')}}" id="update_user" method="POST" class="form-horizontal" enctype="multipart/form-data">
       @csrf
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Ảnh đại diện</label>
+      <div class="col-sm-10">
+        <img class="img_form" src="{{asset('/uploads/images')}}/{{$data_user[0]['avatar']}}" alt="">
+        <input type="file" name="avatar" id="avatar" value="">
+      </div>
+    </div>
     <div class="form-group row">
       <label class="col-sm-2 col-form-label">Họ và tên</label>
       <div class="col-sm-10">
@@ -39,13 +47,6 @@
       </div>
     </div>
     <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Ảnh đại diện</label>
-      <div class="col-sm-10">
-        <img src="{{asset('uploads/images/')}}/{{$data_user[0]['description']}}" alt="avatar"><br>
-        <input type="file" name="avatar" id="avatar" value="">
-      </div>
-    </div>
-    <div class="form-group row">
       <div class="col-sm-10">
         <input type="hidden" class="form-control" id="id" name="id" value="{{$data_user[0]['id']}}">
       </div>
@@ -56,6 +57,7 @@
       </div>
     </div>
   </form>
+  {{-- End: Form cập nhật thông tin --}}
 
   {{-- Dialog loading --}}
   <div id="loading" class="dialog_loading" style="display: none">

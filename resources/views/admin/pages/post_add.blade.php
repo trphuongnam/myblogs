@@ -11,7 +11,18 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-      <form action="" method="POST" enctype="multipart/form-data">
+      <form action="{{url('/admin/post/save')}}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="form-group">
+          <label>Chủ đề:</label>
+          <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
+            
+            @foreach ($category as $cat)
+              <option data-select2-id="30" value="{{$cat['id']}}">{{$cat['name']}}</option>
+            @endforeach
+            
+          </select>
+        </div>
         <div class="row">
           <div class="col-sm-12">
             <div class="form-group">
@@ -32,7 +43,7 @@
             <div class="col-sm-12">
               <div class="form-group">
                 <label>Nội dung:</label>
-                <textarea class="form-control" rows="3" name="content" value=""></textarea>
+                <textarea class="form-control" id="content" rows="3" name="content" value=""></textarea>
               </div>
             </div>
         </div>
@@ -42,24 +53,6 @@
               <div class="custom-file">
                 <input type="file" class="custom-file-input" value="" id="image" name="image">
                 <label class="custom-file-label" for="exampleInputFile"></label>
-              </div>
-              <div class="input-group-append">
-                <span class="input-group-text">Upload</span>
-              </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-              <div class="form-group">
-                <label>Url-key:</label>
-                <input type="text" class="form-control" name="url_key" value="" disabled>
-              </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12">
-              <div class="form-group">
-                <input type="hidden" class="form-control" name="uid" value="">
               </div>
             </div>
         </div>
@@ -79,8 +72,18 @@
             </div>
           </div>
         </div>
+        <button type="submit" class="btn btn-app button_header"><i class="fas fa-save"></i>Lưu</button>
       </form>
     </div>
     <!-- /.card-body -->
   </div>
+
+  <script src="{{ url('ckeditor/ckeditor.js') }}"></script>
+  <script>
+  CKEDITOR.replace( 'content', {
+      filebrowserBrowseUrl: '{{ route('ckfinder_browser') }}',
+
+  } );
+  </script>
+  @include('ckfinder::setup')
 @endsection

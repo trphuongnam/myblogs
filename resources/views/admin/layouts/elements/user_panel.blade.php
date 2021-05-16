@@ -3,7 +3,7 @@
 ?>
 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
     <div class="image">
-      <img src="{{asset('images/users/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+      <img src="{{asset('/uploads/images')}}/{{$user->avatar}}" class="elevation-2" alt="User Image">
     </div>
     <div class="info">
       <a href="{{url('admin/profile')}}/{{$user->url_key}}-{{$user->uid}}" class="d-block">{{$user->fullname}}</a>

@@ -5,9 +5,13 @@ use App\Models\Category;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Kernel;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\CatController;
+use App\Http\Controllers\Admin\WebinfoController;
+use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\PostController;
 
 /* Begin: Route Phần Publics */
-Route::get('/', 'App\Http\Controllers\HomeController@home');
+Route::get('/', 'App\Http\Controllers\HomeController@home')->name("home_page");
 /* End: Route Phần Publics */
 
 /* Begin: Route phần Admin */
@@ -17,27 +21,21 @@ Route::prefix('admin')->group(function () {
     })->middleware("checkLogin");
 
     /* Begin: Route của phần bài viết */
-    Route::get('/post', function () {
-        return view("admin/pages/post");
-    })->middleware("checkLogin");
-    Route::get('/post/add', function () {
-        return view("admin/pages/post_add");
-    })->middleware("checkLogin");
-    Route::get('/post/edit/{post_key}', function () {
-        return view("admin/pages/post_edit");
-    })->middleware("checkLogin");
-    Route::get('/post/del/{post_key}', function () {
-        return view("admin/pages/post_edit");
-    })->middleware("checkLogin");
+    Route::get('/post', [PostController::class, 'index'])->middleware("checkLogin");
+    Route::get('/post/add', [PostController::class, 'add'])->middleware("checkLogin");
+    Route::post('/post/save', [PostController::class, 'save'])->middleware("checkLogin");
+    Route::get('/post/edit/{post_key}', [PostController::class, 'edit'])->middleware("checkLogin");
+    Route::post('/post/update', [PostController::class, 'update'])->middleware("checkLogin");
+    Route::get('/post/del/{post_key}', [PostController::class, 'del'])->middleware("checkLogin");
     /* End: Route của phần bài viết */
 
     /* Begin: Route của phần chủ đề bài viết */
-    Route::get('/cat', 'App\Http\Controllers\Admin\CatController@index')->middleware("checkLogin");
-    Route::get('/cat/add', 'App\Http\Controllers\Admin\CatController@add')->middleware("checkLogin");
-    Route::post('/cat/save', 'App\Http\Controllers\Admin\CatController@save')->middleware("checkLogin");
-    Route::get('/cat/edit/{cat_key}', 'App\Http\Controllers\Admin\CatController@edit')->middleware("checkLogin");
-    Route::post('/cat/update', 'App\Http\Controllers\Admin\CatController@update')->middleware("checkLogin");
-    Route::get('/cat/del/{cat_key}', 'App\Http\Controllers\Admin\CatController@del')->middleware("checkLogin");
+    Route::get('/cat', [CatController::class, 'index'])->middleware("checkLogin");
+    Route::get('/cat/add', [CatController::class, 'add'])->middleware("checkLogin");
+    Route::post('/cat/save', [CatController::class, 'save'])->middleware("checkLogin");
+    Route::get('/cat/edit/{cat_key}', [CatController::class, 'edit'])->middleware("checkLogin");
+    Route::post('/cat/update', [CatController::class, 'update'])->middleware("checkLogin");
+    Route::get('/cat/del/{cat_key}', [CatController::class, 'del'])->middleware("checkLogin");
     /* End: Route của phần chủ đề bài viết */
 
     /* End: Route của phần bình luận bài viết */
@@ -77,28 +75,29 @@ Route::prefix('admin')->group(function () {
     /* End: Route của phần quản lý user*/
 
     /* Begin: Route của phần quản lý website info */
-    Route::get('/webinfo', 'App\Http\Controllers\Admin\WebinfoController@index')->middleware("checkLogin");
-    Route::get('/webinfo/add', 'App\Http\Controllers\Admin\WebinfoController@add')->middleware("checkLogin");
-    Route::post('/webinfo/save', 'App\Http\Controllers\Admin\WebinfoController@save')->middleware("checkLogin");
-    Route::get('/webinfo/edit/{key}', 'App\Http\Controllers\Admin\WebinfoController@edit')->middleware("checkLogin");
-    Route::post('/webinfo/update', 'App\Http\Controllers\Admin\WebinfoController@update')->middleware("checkLogin");
-    Route::get('/webinfo/del/{key}', 'App\Http\Controllers\Admin\WebinfoController@del')->middleware("checkLogin");
+    Route::get('/webinfo', [WebinfoController::class, 'index'])->middleware("checkLogin");
+    Route::get('/webinfo/add', [WebinfoController::class, 'add'])->middleware("checkLogin");
+    Route::post('/webinfo/save', [WebinfoController::class, 'save'])->middleware("checkLogin");
+    Route::get('/webinfo/edit/{key}', [WebinfoController::class, 'edit'])->middleware("checkLogin");
+    Route::post('/webinfo/update', [WebinfoController::class, 'update'])->middleware("checkLogin");
+    Route::get('/webinfo/del/{key}', [WebinfoController::class, 'del'])->middleware("checkLogin");
     /* End: Route của phần quản lý website info */
 
     /* Begin: Route phần profile user */
     Route::get('/profile/{url_key}', [UserController::class, 'profile'])->name('profile')->middleware("checkLogin");
     Route::post('/profile/update', [UserController::class, 'update'])->name('update')->middleware("checkLogin");
+    Route::post('/profile/update_avatar', [UserController::class, 'update_avatar'])->name('update_avatar')->middleware("checkLogin");
     /* End:  Route phần profile user*/
 });
 /* End: Route phần Admin */
 
 
 /* Begin: Route login admin */
-Route::get('/admin/login', 'App\Http\Controllers\Admin\LoginController@index')->name("login");
-Route::post('/admin/login/checklogin', 'App\Http\Controllers\Admin\LoginController@login');
-Route::get('/admin/logout', 'App\Http\Controllers\Admin\LoginController@logout');
-Route::get('/admin/pass-reset', 'App\Http\Controllers\Admin\LoginController@reset')->name('reset_pass');
-Route::post('/admin/pass-reset/checkreset', 'App\Http\Controllers\Admin\LoginController@checkReset');
+Route::get('/admin/login', [LoginController::class, 'index'])->name("login");
+Route::post('/admin/login/checklogin', [LoginController::class, 'login']);
+Route::get('/admin/logout', [LoginController::class, 'logout']);
+Route::get('/admin/pass-reset', [LoginController::class, 'reset'])->name('reset_pass');
+Route::post('/admin/pass-reset/checkreset', [LoginController::class, 'checkReset']);
 /* End: Route login admin */
 
 /* Begin: Route regist user */
