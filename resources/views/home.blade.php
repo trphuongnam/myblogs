@@ -12,46 +12,23 @@
                         <div class="card-header">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center">
-                                    <img class="img-xs rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
+                                    <img class="img-xs rounded-circle" src="{{asset('/uploads/images')}}/{{$post[0]->user_avatar}}" alt="">
                                     <div class="ml-2">
-                                        <p>Mike Popescu</p>
-                                        <p class="tx-11 text-muted">{{date('d-m-y H:m:s', strtotime($item->created_at))}}</p>
+                                        <p>{{$post[0]->user_fname}}</p>
+                                        <p class="tx-11 text-muted">{{date('d-m-Y', strtotime($post[0]->created_at))}}</p>
                                     </div>
                                 </div>
                                 <div class="dropdown">
-                                    <button class="btn p-0" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <button class="btn" id="dropdowns_{{$item->uid}}" onclick="dropdowns('{{$item->uid}}')">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal icon-lg pb-3px">
                                             <circle cx="12" cy="12" r="1"></circle>
                                             <circle cx="19" cy="12" r="1"></circle>
                                             <circle cx="5" cy="12" r="1"></circle>
                                         </svg>
                                     </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-meh icon-sm mr-2">
-                                                <circle cx="12" cy="12" r="10"></circle>
-                                                <line x1="8" y1="15" x2="16" y2="15"></line>
-                                                <line x1="9" y1="9" x2="9.01" y2="9"></line>
-                                                <line x1="15" y1="9" x2="15.01" y2="9"></line>
-                                            </svg> <span class="">Unfollow</span></a>
-                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-corner-right-up icon-sm mr-2">
-                                                <polyline points="10 9 15 4 20 9"></polyline>
-                                                <path d="M4 20h7a4 4 0 0 0 4-4V4"></path>
-                                            </svg> <span class="">Go to post</span></a>
-                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share-2 icon-sm mr-2">
-                                                <circle cx="18" cy="5" r="3"></circle>
-                                                <circle cx="6" cy="12" r="3"></circle>
-                                                <circle cx="18" cy="19" r="3"></circle>
-                                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                                            </svg> <span class="">Share</span></a>
-                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy icon-sm mr-2">
-                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                            </svg> <span class="">Copy link</span></a>
+                                    <div class="dropdown-menu" id="dropdown_menu_{{$item->uid}}" style="display:none">
+                                        <input type="text" id="post_link_{{$item->uid}}" value="{{url('post/')}}/{{$item->url_key}}-{{$item->uid}}" style="display: none">
+                                        <a class="dropdown-item d-flex align-items-center" id="coppy_link_{{$item->uid}}" onclick="copy_link('{{$item->uid}}')" href="javascript:void(0)">Copy link</a>
                                     </div>
                                 </div>
                             </div>
@@ -93,4 +70,60 @@
             </div>
         </div>
         <!-- middle wrapper end -->
+
+<script>
+
+    /* Hàm hiển thị/ẩn dropdown */
+    function dropdowns(uid)
+    {
+        
+        var obj_dropdown = document.getElementById('dropdown_menu_'+uid);
+
+        if(obj_dropdown.style.display == "none") obj_dropdown.style.display = "block";
+        else obj_dropdown.style.display = "none";
+        
+    }
+    /* End: function dropdowns(uid) */
+
+    /* Hàm copy link bài viết */
+    function copy_link(uid)
+    {
+
+        /* Tạo đối tượng copy link bài viết */
+        var copyText = document.getElementById("post_link_"+uid);
+            copyText.select();
+            copyText.setSelectionRange(0, 99999)
+            document.execCommand("copy");
+        
+        /* Sau khi bấm copy xong thì dropdown sẽ ẩn */
+        document.getElementById('dropdown_menu_'+uid).style.display = "none";
+
+        /* Tạo thẻ div chứa thông báo đã copy thành công */
+        var div_msg_copy = document.createElement("DIV");
+            div_msg_copy.style.width = "150px";
+            div_msg_copy.style.height = "40px";
+            div_msg_copy.style.background = "mediumseagreen";
+            div_msg_copy.style.zIndex = "100";
+            div_msg_copy.style.display = "block";
+            div_msg_copy.style.position = "fixed";
+            div_msg_copy.style.color = "white";
+            div_msg_copy.style.textAlign = "center";
+            div_msg_copy.style.borderRadius = "5px";
+            div_msg_copy.style.lineHeight = "40px";
+            div_msg_copy.style.bottom = "5%";
+            div_msg_copy.style.left = "5%";
+            div_msg_copy.innerHTML = "<i class='fas fa-check-circle'></i> Đã sao chép link";
+        
+        /* Thêm thuộc tính id=msg_copy cho thẻ div */
+            div_msg_copy.setAttribute("id", "msg_copy");
+
+        /* Chèn thẻ div vào cuối phần body */
+        document.body.appendChild(div_msg_copy);
+
+        /* Cài đặt thời gian remove thẻ div sau khi hiển thị 5 giây */
+        setTimeout(function(){ document.getElementById("msg_copy").remove(); }, 5000);
+    }
+    /* End: function copy_link(uid) */
+    
+</script>
 @endsection
