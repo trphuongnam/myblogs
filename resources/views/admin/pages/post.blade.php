@@ -82,20 +82,19 @@
     function get_post(uid)
     {
         $.ajax({
-          url: "{{url('/admin/post')}}/{{$item['url_key']}}-"+uid,
+          url: "{{url('/admin/post/p')}}/{{$item['url_key']}}-"+uid,
           cache: false
         })
-          .done(function( data ) {
-            console.log(data);
-            var status = "Đang hiển thị";
-            if(data[0]['status'] == 0) status = "Đang ẩn";
+        .done(function( data ) {
+          var status = "Đang hiển thị";
+          if(data[0]['status'] == 0) status = "Đang ẩn";
 
-            var dateString = data[0]['created_at'].toLocaleString()
+          var dateString = data[0]['created_at'].toLocaleString()
 
-            document.getElementById('title_'+uid).innerHTML = "<h3><span style='text-decoration: underline'>"+data[0]['cat_name']+"</span> - "+data[0]['name']+"<h3>";
-            document.getElementById('content_'+uid).innerHTML = "<p>"+data[0]['description']+"</p><p>"+data[0]['content']+"</p>";
-            document.getElementById('footer_'+uid).innerHTML = "<p>Ngày viết:"+dateString+"&nbsp;&nbsp;&nbsp;Người viết:"+data[0]['user_fullname']+"&nbsp;&nbsp;&nbsp;Trạng thái: "+status+"</p>";
-          });
+          document.getElementById('title_'+uid).innerHTML = "<h3><span style='text-decoration: underline'>"+data[0]['cat_name']+"</span> - "+data[0]['name']+"<h3>";
+          document.getElementById('content_'+uid).innerHTML = "<p>"+data[0]['description']+"</p><p>"+data[0]['content']+"</p>";
+          document.getElementById('footer_'+uid).innerHTML = "<p>Ngày viết:"+dateString+"&nbsp;&nbsp;&nbsp;Người viết:"+data[0]['user_fullname']+"&nbsp;&nbsp;&nbsp;Trạng thái: "+status+"</p>";
+        });
     }
   </script>
 @endsection

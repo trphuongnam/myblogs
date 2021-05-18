@@ -23,7 +23,7 @@ Route::prefix('admin')->group(function () {
 
     /* Begin: Route của phần bài viết */
     Route::get('/post', [PostController::class, 'index'])->name("index_post")->middleware("checkLogin");
-    Route::get('/post/{url_key}', [PostController::class, 'detail'])->name("detail_post")->middleware("checkLogin");
+    Route::get('/post/p/{url_key}', [PostController::class, 'detail'])->name("detail_post")->middleware("checkLogin");
     Route::get('/post/add', [PostController::class, 'add'])->name("add_post")->middleware("checkLogin");
     Route::post('/post/save', [PostController::class, 'save'])->name("save_post")->middleware("checkLogin");
     Route::get('/post/edit/{post_key}', [PostController::class, 'edit'])->name("edit_post")->middleware("checkLogin");

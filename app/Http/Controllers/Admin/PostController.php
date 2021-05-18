@@ -25,10 +25,6 @@ class PostController extends Controller
         $arr_url_key = explode("-", $url_key);
         $uid = $arr_url_key[count($arr_url_key)-1];
 
-        // $data = Post::where('uid', $uid)->with('users', 'categories')
-        //         ->select('posts.*', 'users.fullname as user_fullname', 'categories.name as cat_name')
-        //         ->get()->toArray();
-
         $data = DB::table('posts')->where('posts.uid', $uid)
                 ->join('users', 'users.id', '=', 'posts.id_user')
                 ->join('categories', 'categories.id', '=', 'posts.id_cat')
