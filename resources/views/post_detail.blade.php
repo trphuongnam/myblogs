@@ -5,17 +5,15 @@
         <!-- middle wrapper start -->
         <div class="col-md-8 col-xl-6 middle-wrapper">
             <div class="row">
-                
-                @foreach ($post as $item)
                 <div class="col-md-12 grid-margin">
                     <div class="card rounded">
                         <div class="card-header">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center">
-                                    <img class="img-xs rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
+                                    <img class="img-xs rounded-circle" src="{{asset('/uploads/images')}}/{{$post[0]->user_avatar}}" alt="">
                                     <div class="ml-2">
-                                        <p>Mike Popescu</p>
-                                        <p class="tx-11 text-muted">{{date('d-m-y H:m:s', strtotime($item->created_at))}}</p>
+                                        <p>{{$post[0]->user_fname}}</p>
+                                        <p class="tx-11 text-muted">{{date('d-m-Y', strtotime($post[0]->created_at))}}</p>
                                     </div>
                                 </div>
                                 <div class="dropdown">
@@ -56,11 +54,13 @@
                                 </div>
                             </div>
                         </div>
+                        {{-- {{var_dump($post)}} --}}
                         <div class="card-body">
-                            <h3 class="post_name">{!!$item->name!!}</h3>
-                            <p class="mb-3 tx-14">{!!$item->description!!}<br><a href="{{url('post/')}}/{{$item->url_key}}-{{$item->uid}}" class="link_detail">Xem thêm</a></p>
-                            
-                            <img class="img-fluid" src="{{asset('/uploads/images')}}/{!!$item->image!!}" alt="">
+                            <h3 class="post_name">{!!$post[0]->name!!}</h3>
+                            <p class="mb-3 tx-14">{!!$post[0]->description!!}<br></p>
+                            <p class="mb-3 tx-14">{!!$post[0]->content!!}<br></p>
+
+                            <img class="img-fluid" src="{{asset('/uploads/images')}}/{!!$post[0]->image!!}" alt="">
                         </div>
                         <div class="card-footer">
                             <div class="d-flex post-actions">
@@ -88,7 +88,6 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
 
             </div>
         </div>

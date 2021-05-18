@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\PostController;
 
 /* Begin: Route Phần Publics */
 Route::get('/', 'App\Http\Controllers\HomeController@home')->name("home_page");
+Route::get('/post/{url_key}', 'App\Http\Controllers\PostPublicController@detail')->name("home_page");
 /* End: Route Phần Publics */
 
 /* Begin: Route phần Admin */
@@ -21,12 +22,13 @@ Route::prefix('admin')->group(function () {
     })->middleware("checkLogin");
 
     /* Begin: Route của phần bài viết */
-    Route::get('/post', [PostController::class, 'index'])->middleware("checkLogin");
-    Route::get('/post/add', [PostController::class, 'add'])->middleware("checkLogin");
-    Route::post('/post/save', [PostController::class, 'save'])->middleware("checkLogin");
-    Route::get('/post/edit/{post_key}', [PostController::class, 'edit'])->middleware("checkLogin");
-    Route::post('/post/update', [PostController::class, 'update'])->middleware("checkLogin");
-    Route::get('/post/del/{post_key}', [PostController::class, 'del'])->middleware("checkLogin");
+    Route::get('/post', [PostController::class, 'index'])->name("index_post")->middleware("checkLogin");
+    Route::get('/post/{url_key}', [PostController::class, 'detail'])->name("detail_post")->middleware("checkLogin");
+    Route::get('/post/add', [PostController::class, 'add'])->name("add_post")->middleware("checkLogin");
+    Route::post('/post/save', [PostController::class, 'save'])->name("save_post")->middleware("checkLogin");
+    Route::get('/post/edit/{post_key}', [PostController::class, 'edit'])->name("edit_post")->middleware("checkLogin");
+    Route::post('/post/update', [PostController::class, 'update'])->name("update_post")->middleware("checkLogin");
+    Route::get('/post/del/{post_key}', [PostController::class, 'del'])->name("del_post")->middleware("checkLogin");
     /* End: Route của phần bài viết */
 
     /* Begin: Route của phần chủ đề bài viết */

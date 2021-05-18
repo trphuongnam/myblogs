@@ -71,8 +71,8 @@ body{
 }
 
 .profile-page .profile-header .cover .cover-body .profile-pic {
-    border-radius: 50%;
-    width: 100px;
+    width: 120px;
+    border: 3px solid azure;
 }
 
 @media (max-width: 767px) {
