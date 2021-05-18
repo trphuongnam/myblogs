@@ -112,18 +112,22 @@ class WebinfoController extends Controller
             $avatar_name = "";
             $cover_image_name = "";
             
-            if(request()->hasfile('avatar') || request()->hasfile('cover_image'))
+            $uploaded_avatar = $request->file('avatar');
+            $uploaded_cover_image = $request->file('cover_image');
+
+            /* Tạo đường dẫn lưu file */
+            $path_save_file = public_path('/uploads/images');
+
+            /* Tạo mảng chứa các đuôi file cho phép */
+            $arr_extension_file = ['png'=>'png', 'jpeg'=>'jpeg', 'jpg'=>'jpg'];
+            
+            if(request()->hasfile('avatar'))
             {
-                $uploaded_avatar = $request->file('avatar');
-                $uploaded_cover_image = $request->file('cover_image');
-
-                /* Tạo đường dẫn lưu file */
-                $path_save_file = public_path('/uploads/images');
-
-                /* Tạo mảng chứa các đuôi file cho phép */
-                $arr_extension_file = ['png'=>'png', 'jpeg'=>'jpeg', 'jpg'=>'jpg'];
-
                 $avatar_name = $this->upload_avatar($path_save_file, $arr_extension_file, $uploaded_avatar);
+            }
+
+            if(request()->hasfile('cover_image'))
+            {
                 $cover_image_name = $this->upload_cover_image($path_save_file, $arr_extension_file, $uploaded_cover_image);                
             }
             

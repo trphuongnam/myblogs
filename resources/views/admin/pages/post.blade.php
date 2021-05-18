@@ -87,9 +87,14 @@
         })
           .done(function( data ) {
             console.log(data);
-            document.getElementById('title_'+uid).innerHTML = data[0]['name'];
+            var status = "Đang hiển thị";
+            if(data[0]['status'] == 0) status = "Đang ẩn";
+
+            var dateString = data[0]['created_at'].toLocaleString()
+
+            document.getElementById('title_'+uid).innerHTML = "<h3><span style='text-decoration: underline'>"+data[0]['cat_name']+"</span> - "+data[0]['name']+"<h3>";
             document.getElementById('content_'+uid).innerHTML = "<p>"+data[0]['description']+"</p><p>"+data[0]['content']+"</p>";
-            document.getElementById('footer_'+uid).innerHTML = "<p>Ngày viết:"+data[0]['created_at']+"&nbsp;&nbsp;&nbsp;Người viết:"+data[0]['id_user']+"&nbsp;&nbsp;&nbsp;Trạng thái: "+data[0]['status']+"</p>";
+            document.getElementById('footer_'+uid).innerHTML = "<p>Ngày viết:"+dateString+"&nbsp;&nbsp;&nbsp;Người viết:"+data[0]['user_fullname']+"&nbsp;&nbsp;&nbsp;Trạng thái: "+status+"</p>";
           });
     }
   </script>
