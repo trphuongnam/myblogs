@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PostComment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Post;
+use App\thuvien_xuly\strings;
 
 class PostPublicController extends Controller
 {
@@ -21,5 +24,49 @@ class PostPublicController extends Controller
                 ->get()->toArray();
 
         return view('post_detail')->with('post', $post);
+    }
+
+    function post_comment(Request $request)
+    {
+        $strings = new Strings();
+
+        /* Kiem tra noi dung nhap len */
+        $rule = [
+            'name_person' => 'required|max:50',
+            'email' => 'required|email',
+            'content' => 'required'
+        ];
+
+        $msg = [
+            'name_person.required' => 'Vui lòng nhập tên của bạn',
+            'name_person.max' => 'Vui lòng nhập tên không quá 50 ký tự',
+            'email.required' => 'Vui lòng nhập email của bạn',
+            'email.email' => 'Email không đúng định dạng',
+            'content.required' => 'Vui lòng nhập nội dung comment của bạn'
+        ];
+
+        $validate = $request->validate($rule, $msg);
+
+        if($validate == false) return "Loi";
+        else{
+
+            $post = Post::where('uid', $request->uid_post)->select('id', 'url_key')->get()->toArray();
+            
+            $comment = new PostComment();
+            $comment->content = $request->content;
+            $comment->id_post = $post[0]['id'];
+            $comment->status = 1;
+            $comment->level = 1;
+            $comment->str_id = 1;
+            $comment->id_user = 1;
+            $comment->name_person = $request->name_person;
+            $comment->email = $request->email;
+            $comment->website = $request->website;
+            $comment->uid = $strings->rand_string(20);
+            $comment->created_at = now();
+
+            $comment->save();
+            return $post[0]['url_key'].'-'.$request->uid_post;
+        }
     }
 }

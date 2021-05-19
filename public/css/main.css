@@ -214,3 +214,9 @@ img {
     position: absolute;
     z-index: -9999;
 }
+
+.input_comment{
+    width: 100%;
+}
+
+.btn{color: white}

@@ -51,4 +51,34 @@
     }
     /* End: function copy_link(uid) */
     
+    /* Ham comment bai viet */
+    function post_comment(uid)
+    {
+        var formData = new FormData(document.getElementById('post_comment'));
+            formData.append('uid_post', uid);
+
+        $.ajaxSetup({
+            headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            method: "POST",
+            url: "{{url('/post/comment')}}",
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function (msg) {
+                window.location.href = "{{url('/post/')}}/"+msg;
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+
+    }
+    /* End: function post_comment() */
+
 </script>

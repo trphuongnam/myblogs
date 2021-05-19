@@ -55,6 +55,39 @@
                                 </a>
                             </div>
                         </div>
+                        <div class="card-footer">
+                            <div class="d-flex post-actions">
+                                <form action="{{url('/post/comment')}}" method="POST" id="post_comment" enctype="multipart/form-data">
+                                    @csrf
+                                    <table>
+                                        <tr>
+                                            <td><input class="input_comment" type="text" id="person_name" name="name_person" placeholder="Họ tên:*"></td>
+                                            <td><input class="input_comment"  type="text" id="email" name="email" placeholder="Email:*"></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan=2>
+                                                <input class="input_comment"  type="text" id="website" name="website" placeholder="Website"><br>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan=2>
+                                                <textarea class="input_comment"  name="content" id="content" cols="30" rows="5" placeholder="Nội dung:*"></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan=2>
+                                                <a href="javascript:void(0)" class="btn btn-primary d-flex align-items-center text_button" onclick="post_comment('{{$post[0]->uid}}')">
+                                                    <i class="fas fa-paper-plane"></i>
+                                                    <span class="d-none d-md-block ml-2">Đăng</span>
+                                                </a>                                            
+                                            </td>
+                                        </tr>
+                                        
+                                    </table>
+                                    
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
