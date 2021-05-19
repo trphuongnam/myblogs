@@ -89,7 +89,7 @@
           var status = "Đang hiển thị";
           if(data[0]['status'] == 0) status = "Đang ẩn";
 
-          var dateString = data[0]['created_at'].toLocaleString()
+          var dateString = data[0]['created_at'].toLocaleString();
 
           document.getElementById('title_'+uid).innerHTML = "<h3><span style='text-decoration: underline'>"+data[0]['cat_name']+"</span> - "+data[0]['name']+"<h3>";
           document.getElementById('content_'+uid).innerHTML = "<p>"+data[0]['description']+"</p><p>"+data[0]['content']+"</p>";

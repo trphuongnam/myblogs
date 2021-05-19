@@ -7,6 +7,8 @@
             <div class="row">
                 <div class="col-md-12 grid-margin">
                     <div class="card rounded">
+
+                        {{-- Begin: user info --}}
                         <div class="card-header">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center">
@@ -31,7 +33,9 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- {{var_dump($post)}} --}}
+                        {{-- End: user info --}}
+
+                        {{-- Begin: Content post --}}
                         <div class="card-body">
                             <h3 class="post_name">{!!$post[0]->name!!}</h3>
                             <p class="mb-3 tx-14">{!!$post[0]->description!!}<br></p>
@@ -39,6 +43,9 @@
 
                             <img class="img-fluid" src="{{asset('/uploads/images')}}/{!!$post[0]->image!!}" alt="">
                         </div>
+                        {{-- End: Content post --}}
+
+                        {{-- Begin: button action --}}
                         <div class="card-footer">
                             <div class="d-flex post-actions">
                                 <a href="javascript:;" class="d-flex align-items-center text-muted mr-4">
@@ -55,6 +62,15 @@
                                 </a>
                             </div>
                         </div>
+                        {{-- End: Button action --}}
+
+                        {{-- Begin: List comment --}}
+                        <div class="card-body" id="show_comment">
+                            <input type="hidden" id="uid_post" value="{{$post[0]->uid}}">
+                        </div>
+                        {{-- End: List comment --}}
+
+                        {{-- Begin: Form comment --}}
                         <div class="card-footer">
                             <div class="d-flex post-actions">
                                 <form action="{{url('/post/comment')}}" method="POST" id="post_comment" enctype="multipart/form-data">
@@ -88,6 +104,8 @@
                                 </form>
                             </div>
                         </div>
+                        {{-- End: Form comment --}}
+
                     </div>
                 </div>
 

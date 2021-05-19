@@ -220,3 +220,26 @@ img {
 }
 
 .btn{color: white}
+
+.box_comment
+{
+    width: 100%;
+    border: 1px solid red;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+.info_person{
+    width: 100%;
+    box-sizing: border-box;
+    height: auto;
+    border-bottom: 1px dotted;
+    padding: 0px 10px;
+}
+
+.comment_content{
+    width: 100%;
+    box-sizing: border-box;
+    height: 40px;
+    padding: 0px 10px;
+    color: rebeccapurple;
+}

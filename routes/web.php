@@ -14,7 +14,7 @@ use App\Http\Controllers\Admin\PostController;
 Route::get('/', 'App\Http\Controllers\HomeController@home')->name("home_page");
 Route::get('/post/{url_key}', 'App\Http\Controllers\PostPublicController@detail')->name("post_detail");
 Route::post('/post/comment', 'App\Http\Controllers\PostPublicController@post_comment')->name("post_comment");
-
+Route::get('/post/show_comment/{uid_post}', 'App\Http\Controllers\PostPublicController@show_comment')->name("show_comment");
 /* End: Route Phần Publics */
 
 /* Begin: Route phần Admin */

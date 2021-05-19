@@ -69,4 +69,12 @@ class PostPublicController extends Controller
             return $post[0]['url_key'].'-'.$request->uid_post;
         }
     }
+
+    function show_comment($uid_post)
+    {
+        $post_id = Post::where('uid', $uid_post)->select('id')->get()->toArray();
+        $comment_post = Post::find($post_id[0]['id'])->comment()->get()->toArray();
+
+        return $comment_post;
+    }
 }

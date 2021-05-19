@@ -16,7 +16,7 @@ class UpdatePostCommentTable extends Migration
         Schema::table('post_comments', function (Blueprint $table) {
             $table->string('name_person', 50);
             $table->string('email', 100);
-            $table->string('website', 100);
+            $table->string('website', 100)->nullable();
             $table->string('uid', 50);
         });
     }
