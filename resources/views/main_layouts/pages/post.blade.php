@@ -12,7 +12,7 @@
     <div class="container">
         <div class="row animate-box">
             <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                <h2>My Posts</h2>
+                <h2>Bài Viết Của Tôi</h2>
             </div>
         </div>
         <div class="row">
@@ -20,10 +20,10 @@
             
             <div class="col-md-4">
                 <div class="fh5co-blog animate-box">
-                    <a href="#" class="blog-bg" style="background-image: url({{asset('uploads/images')}}/{{$item['image']}});"></a>
+                    <a href="{{url('post/')}}/{{$item['url_key']}}-{{$item['uid']}}" class="blog-bg" style="background-image: url({{asset('uploads/images')}}/{{$item['image']}});"></a>
                     <div class="blog-text">
                         <span class="posted_on">{{date('d/m/Y H:i A', strtotime($item['created_at']))}}</span>
-                        <h3><a href="{{url('posts/')}}/{{$item['url_key']}}-{{$item['uid']}}">{{$item['name']}}</a></h3>
+                        <h3><a href="{{url('post/')}}/{{$item['url_key']}}-{{$item['uid']}}">{{$item['name']}}</a></h3>
                         <p>{{$item['description']}}</p>
                         <ul class="stuff">
                             <li><i class="icon-heart2"></i>249</li>

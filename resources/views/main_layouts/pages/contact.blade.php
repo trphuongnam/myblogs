@@ -3,7 +3,7 @@
         <div class="overlay"></div>
     </div>
     <div class="choose animate-box">
-        <h2>Contact</h2>
+        <h2>Liên Hệ Với Tôi</h2>
         <form action="#">
             <div class="row form-group">
                 <div class="col-md-6">

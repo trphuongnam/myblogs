@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row animate-box">
             <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                <h2>My Quote!</h2>
+                <h2>Câu Nói Tôi Yêu Thích!</h2>
                 <p>Never say all you know. <br>And never believe all you hear.</p>
             </div>
         </div>

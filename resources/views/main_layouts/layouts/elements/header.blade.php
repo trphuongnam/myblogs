@@ -9,7 +9,7 @@
                 <div class="display-t js-fullheight">
                     <div class="display-tc js-fullheight animate-box" data-animate-effect="fadeIn">
                         <div class="profile-thumb" style="background: url('{{asset('uploads/images')}}/{{$data_header[0]['avatar']}}');"></div>
-                        <h1><span>{{$data_header[0]['name']}}</span></h1>
+                        <h1><span id="website_name">{{$data_header[0]['name']}}</span></h1>
                         <h3><span>Web Developer / Designer</span></h3>
                         <p>
                             <ul class="fh5co-social-icons">

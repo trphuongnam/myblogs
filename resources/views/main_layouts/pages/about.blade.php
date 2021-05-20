@@ -4,8 +4,8 @@
 <div id="fh5co-about" class="animate-box area_content">
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                <h2>About Me</h2>
+            <div class="col-esumemd-8 col-md-offset-2 text-center fh5co-heading">
+                <h2>Giới Thiệu Về Tôi</h2>
             </div>
         </div>
         <div class="row">

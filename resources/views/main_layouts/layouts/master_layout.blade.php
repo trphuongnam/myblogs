@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-        @include('about/layouts/elements/meta')
-        @include('about/layouts/elements/css')
-        @include('about/layouts/elements/js')        
+        @include('main_layouts/layouts/elements/meta')
+        @include('main_layouts/layouts/elements/css')
+        @include('main_layouts/layouts/elements/js')        
 
 	</head>
 	<body>
@@ -11,7 +11,7 @@
 	
         <div id="page">	
             {{-- Begin: Header --}}
-            @include('about/layouts/elements/header')
+            @include('main_layouts/layouts/elements/header')
             
             {{-- Begin: content --}}
             @section('content')
@@ -19,7 +19,7 @@
             {{-- End: Content --}}
             
             {{-- Begin: Footer --}}
-            @include('about/layouts/elements/footer')
+            @include('main_layouts/layouts/elements/footer')
         </div>
 </body>
 </html>

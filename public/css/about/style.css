@@ -1308,3 +1308,7 @@ input[type="text"] {
 .overlay{
   background: rgba(255, 144, 0, 0) !important;
 }
+#website_name{
+  font-family: Sriracha;
+  font-weight: 400;
+}
