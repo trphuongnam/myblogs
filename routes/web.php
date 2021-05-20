@@ -15,6 +15,12 @@ Route::get('/', 'App\Http\Controllers\HomeController@home')->name("home_page");
 Route::get('/post/{url_key}', 'App\Http\Controllers\PostPublicController@detail')->name("post_detail");
 Route::post('/post/comment', 'App\Http\Controllers\PostPublicController@post_comment')->name("post_comment");
 Route::get('/post/show_comment/{uid_post}', 'App\Http\Controllers\PostPublicController@show_comment')->name("show_comment");
+
+Route::get('/about', 'App\Http\Controllers\AboutController@index')->name("about_page");
+Route::get('/albums', 'App\Http\Controllers\AlbumController@index')->name("album_page");
+Route::get('/mycv', 'App\Http\Controllers\MyCVController@index')->name("mycv_page");
+Route::get('/contact', 'App\Http\Controllers\ContactController@index')->name("contact_page");
+
 /* End: Route Phần Publics */
 
 /* Begin: Route phần Admin */

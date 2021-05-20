@@ -41,17 +41,27 @@
                         </div>
                         <div class="card-footer">
                             <div class="d-flex post-actions">
-                                <a href="javascript:;" class="d-flex align-items-center text-muted mr-4">
+                                <a href="javascript:;" class="d-flex align-items-center mr-4">
                                     <i class="fas fa-heart"></i>
                                     <span class="d-none d-md-block ml-2">Like</span>
                                 </a>
-                                <a href="javascript:;" class="d-flex align-items-center text-muted mr-4">
+
+                                @php
+                                    /* Đếm số lượt bình luận */
+                                    $num_comment = App\Models\Post::find($item->id)->comment()->count();
+
+                                @endphp
+                                <a href="{{url('post/')}}/{{$item->url_key}}-{{$item->uid}}#comment" class="d-flex align-items-center mr-4">
                                     <i class="fas fa-comment-dots"></i>
-                                    <span class="d-none d-md-block ml-2">Comment</span>
+                                    <span class="d-none d-md-block ml-2">Comment - ({{$num_comment}} Bình luận)</span>
                                 </a>
-                                <a href="javascript:;" class="d-flex align-items-center text-muted">
+                                <a href="javascript:;" class="d-flex align-items-center mr-4">
                                     <i class="fas fa-share"></i>
                                     <span class="d-none d-md-block ml-2">Share</span>
+                                </a>
+                                <a href="javascript:void(0);" class="d-flex align-items-center ">
+                                    <i class="fas fa-eye"></i>
+                                    <span class="d-none d-md-block ml-2">{!!$item->numview!!}</span>
                                 </a>
                             </div>
                         </div>

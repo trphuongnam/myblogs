@@ -2,6 +2,14 @@
 @section('title', 'Trang Chủ')
 
 @section('content')
+
+@php
+    /* Cập nhật số lượt view cho bài viết */
+    $post_view = App\Models\Post::find($post[0]->id);
+    $post_view -> numview = $post[0]->numview + 1;
+    $post_view -> save();
+@endphp
+
         <!-- middle wrapper start -->
         <div class="col-md-8 col-xl-6 middle-wrapper">
             <div class="row">
@@ -48,17 +56,19 @@
                         {{-- Begin: button action --}}
                         <div class="card-footer">
                             <div class="d-flex post-actions">
-                                <a href="javascript:;" class="d-flex align-items-center text-muted mr-4">
+                                <a href="javascript:;" class="d-flex align-items-center mr-4">
                                     <i class="fas fa-heart"></i>
                                     <span class="d-none d-md-block ml-2">Like</span>
                                 </a>
-                                <a href="javascript:;" class="d-flex align-items-center text-muted mr-4">
+                                <a href="javascript:;" class="d-flex align-items-center mr-4">
                                     <i class="fas fa-comment-dots"></i>
                                     <span class="d-none d-md-block ml-2">Comment</span>
                                 </a>
                                 <a href="javascript:;" class="d-flex align-items-center text-muted">
-                                    <i class="fas fa-share"></i>
-                                    <span class="d-none d-md-block ml-2">Share</span>
+                                    <div class="fb-share-button" 
+                                        data-href="{{url()->current()}}" 
+                                        data-layout="button_count">
+                                    </div>
                                 </a>
                             </div>
                         </div>
@@ -71,7 +81,7 @@
                         {{-- End: List comment --}}
 
                         {{-- Begin: Form comment --}}
-                        <div class="card-footer">
+                        <div class="card-footer" id="comment">
                             <div class="d-flex post-actions">
                                 <form action="{{url('/post/comment')}}" method="POST" id="post_comment" enctype="multipart/form-data">
                                     @csrf
